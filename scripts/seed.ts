@@ -56,12 +56,13 @@ async function main() {
 
   // ── Products (demo catalogue — replace from admin) ──
   const products: Array<{
-    name: string; slug: string; catSlug: string; image: string;
+    name: string; slug: string; catSlug: string; images: string[];
     price: number | null; badge?: string; featured?: boolean;
     materials: string; dimensions: string; colors: string; description: string;
   }> = [
     {
-      name: "Aarav 3-Seater Sofa", slug: "aarav-3-seater-sofa", catSlug: "sofas", image: "/images/p-sofa-1.png",
+      name: "Aarav 3-Seater Sofa", slug: "aarav-3-seater-sofa", catSlug: "sofas",
+      images: ["/images/p-sofa-1.png", "/images/cat-sofas.png", "/images/g-1.png", "/images/g-2.png"],
       price: 58900, badge: "Bestseller", featured: true,
       materials: "Solid Sheesham wood frame, premium linen upholstery",
       dimensions: "L 198 × D 88 × H 84 cm · Seat height 45 cm",
@@ -69,7 +70,8 @@ async function main() {
       description: "A generously proportioned three-seater with a solid wood frame and soft linen-look upholstery. Clean lines, tapered legs and deep cushions make it an easy anchor for family living rooms. Custom sizes and fabrics available on request.",
     },
     {
-      name: "Regal Chesterfield 2-Seater", slug: "regal-chesterfield-2-seater", catSlug: "sofas", image: "/images/p-sofa-2.png",
+      name: "Regal Chesterfield 2-Seater", slug: "regal-chesterfield-2-seater", catSlug: "sofas",
+      images: ["/images/p-sofa-2.png", "/images/g-2.png", "/images/cat-living.png"],
       price: 74500, badge: "Premium",
       materials: "Hardwood frame, top-grain leather upholstery",
       dimensions: "L 152 × D 86 × H 88 cm",
@@ -77,7 +79,8 @@ async function main() {
       description: "Deep button tufting and rolled arms give this two-seater its classic character, while compact proportions suit apartments. A quiet statement piece for reading corners and study rooms.",
     },
     {
-      name: "Meridian L-Shaped Sectional", slug: "meridian-l-shaped-sectional", catSlug: "sofas", image: "/images/p-sofa-3.png",
+      name: "Meridian L-Shaped Sectional", slug: "meridian-l-shaped-sectional", catSlug: "sofas",
+      images: ["/images/p-sofa-3.png", "/images/g-3.png", "/images/cat-sofas.png"],
       price: 89900, featured: true,
       materials: "Solid wood frame, high-resilience foam, woven fabric",
       dimensions: "L 268 × W 168 × H 82 cm",
@@ -85,7 +88,8 @@ async function main() {
       description: "A plush L-shaped sectional with a chaise for stretching out. Detachable covers and reversible chaise orientation can be configured at the showroom.",
     },
     {
-      name: "Windsor King Bed", slug: "windsor-king-bed", catSlug: "beds", image: "/images/p-bed-1.png",
+      name: "Windsor King Bed", slug: "windsor-king-bed", catSlug: "beds",
+      images: ["/images/p-bed-1.png", "/images/g-4.png", "/images/cat-beds.png"],
       price: 72000, badge: "Bestseller", featured: true,
       materials: "Solid walnut-finished wood, upholstered headboard",
       dimensions: "L 213 × W 195 × H 110 cm (King)",
@@ -93,7 +97,8 @@ async function main() {
       description: "A calm, centred bedroom begins with a bed like Windsor — a tall cushioned headboard framed in solid wood, with a low platform base. Storage and hydraulic-lift options available on request.",
     },
     {
-      name: "Rattan Queen Bed", slug: "rattan-queen-bed", catSlug: "beds", image: "/images/p-bed-2.png",
+      name: "Rattan Queen Bed", slug: "rattan-queen-bed", catSlug: "beds",
+      images: ["/images/p-bed-2.png", "/images/cat-beds.png", "/images/g-5.png"],
       price: 52500,
       materials: "Solid wood with woven rattan headboard panel",
       dimensions: "L 208 × W 156 × H 105 cm (Queen)",
@@ -101,7 +106,8 @@ async function main() {
       description: "Light, airy and quietly tropical. The woven rattan headboard adds texture without weight — a favourite for guest rooms and sunlit bedrooms.",
     },
     {
-      name: "Aster 3-Door Wardrobe", slug: "aster-3-door-wardrobe", catSlug: "wardrobes", image: "/images/p-ward-1.png",
+      name: "Aster 3-Door Wardrobe", slug: "aster-3-door-wardrobe", catSlug: "wardrobes",
+      images: ["/images/p-ward-1.png", "/images/g-6.png", "/images/cat-wardrobes.png"],
       price: 68000,
       materials: "Engineered wood core with premium laminate finish, mirror panel",
       dimensions: "W 180 × D 60 × H 210 cm",
@@ -109,7 +115,8 @@ async function main() {
       description: "Three doors, a full-height mirror and a mix of hanging, shelving and drawer storage. Interior layout can be customised to your wardrobe habits.",
     },
     {
-      name: "Nova 2-Door Mirror Wardrobe", slug: "nova-2-door-mirror-wardrobe", catSlug: "wardrobes", image: "/images/p-ward-2.png",
+      name: "Nova 2-Door Mirror Wardrobe", slug: "nova-2-door-mirror-wardrobe", catSlug: "wardrobes",
+      images: ["/images/p-ward-2.png", "/images/cat-wardrobes.png", "/images/g-7.png"],
       price: 45900, badge: "New",
       materials: "Pre-laminated board, full-length mirror, soft-close hinges",
       dimensions: "W 122 × D 58 × H 205 cm",
@@ -117,7 +124,8 @@ async function main() {
       description: "A compact two-door wardrobe with a full-length mirror front — ideal for bedrooms where space is at a premium. Soft-close hardware throughout.",
     },
     {
-      name: "Harvest 6-Seater Dining Set", slug: "harvest-6-seater-dining-set", catSlug: "dining-room", image: "/images/p-dine-1.png",
+      name: "Harvest 6-Seater Dining Set", slug: "harvest-6-seater-dining-set", catSlug: "dining-room",
+      images: ["/images/p-dine-1.png", "/images/g-8.png", "/images/cat-dining.png"],
       price: 96500, featured: true,
       materials: "Solid Sheesham wood, upholstered chairs",
       dimensions: "Table: L 180 × W 90 × H 76 cm · 6 chairs",
@@ -125,7 +133,8 @@ async function main() {
       description: "A warm, substantial dining table for long meals and longer conversations. The set includes six cushioned chairs; chair upholstery can be selected at the showroom.",
     },
     {
-      name: "Circle 4-Seater Round Dining", slug: "circle-4-seater-round-dining", catSlug: "dining-room", image: "/images/p-dine-2.png",
+      name: "Circle 4-Seater Round Dining", slug: "circle-4-seater-round-dining", catSlug: "dining-room",
+      images: ["/images/p-dine-2.png", "/images/cat-dining.png", "/images/g-1.png"],
       price: 54000,
       materials: "Solid wood top and legs",
       dimensions: "Table: Ø 110 × H 75 cm · 4 chairs",
@@ -133,7 +142,8 @@ async function main() {
       description: "A round table that keeps conversations circular. Perfect for compact dining areas and open-plan kitchens.",
     },
     {
-      name: "Float Wall-Mounted TV Unit", slug: "float-wall-mounted-tv-unit", catSlug: "tv-units", image: "/images/p-tv-1.png",
+      name: "Float Wall-Mounted TV Unit", slug: "float-wall-mounted-tv-unit", catSlug: "tv-units",
+      images: ["/images/p-tv-1.png", "/images/g-2.png", "/images/cat-tv.png"],
       price: 28900, badge: "Customisable",
       materials: "Premium laminate on engineered wood, fluted fronts",
       dimensions: "W 180 × D 35 × H 45 cm",
@@ -141,7 +151,8 @@ async function main() {
       description: "A floating media console with fluted drawer fronts and open shelves for set-top boxes and soundbars. Made-to-size for your wall — share your TV size and wall dimensions with us.",
     },
     {
-      name: "Console Low TV Unit", slug: "console-low-tv-unit", catSlug: "tv-units", image: "/images/p-tv-2.png",
+      name: "Console Low TV Unit", slug: "console-low-tv-unit", catSlug: "tv-units",
+      images: ["/images/p-tv-2.png", "/images/cat-tv.png", "/images/g-3.png"],
       price: 24500,
       materials: "Engineered wood with laminate finish, brass pulls",
       dimensions: "W 160 × D 40 × H 50 cm",
@@ -149,7 +160,8 @@ async function main() {
       description: "Four deep drawers keep remotes, cables and game consoles out of sight. Brass pulls add a quiet touch of warmth.",
     },
     {
-      name: "Westport Walnut Coffee Table", slug: "westport-walnut-coffee-table", catSlug: "coffee-tables", image: "/images/p-coffee-1.png",
+      name: "Westport Walnut Coffee Table", slug: "westport-walnut-coffee-table", catSlug: "coffee-tables",
+      images: ["/images/p-coffee-1.png", "/images/g-4.png", "/images/cat-coffee.png"],
       price: 14900, featured: true,
       materials: "Solid walnut wood",
       dimensions: "L 120 × W 60 × H 42 cm",
@@ -157,7 +169,8 @@ async function main() {
       description: "Rounded edges, tapered mid-century legs and a warm walnut finish. A quiet centrepiece that lets your sofa do the talking.",
     },
     {
-      name: "Halo Travertine Coffee Table", slug: "halo-travertine-coffee-table", catSlug: "coffee-tables", image: "/images/p-coffee-2.png",
+      name: "Halo Travertine Coffee Table", slug: "halo-travertine-coffee-table", catSlug: "coffee-tables",
+      images: ["/images/p-coffee-2.png", "/images/cat-coffee.png", "/images/g-5.png"],
       price: 21000, badge: "New",
       materials: "Travertine stone top, solid oak base",
       dimensions: "Ø 90 × H 40 cm",
@@ -165,7 +178,8 @@ async function main() {
       description: "A sculptural round table pairing a natural stone top with a solid oak base. Each stone top has unique veining.",
     },
     {
-      name: "Scholar Study Desk", slug: "scholar-study-desk", catSlug: "study-tables", image: "/images/p-study-1.png",
+      name: "Scholar Study Desk", slug: "scholar-study-desk", catSlug: "study-tables",
+      images: ["/images/p-study-1.png", "/images/g-6.png", "/images/cat-study.png"],
       price: 18500,
       materials: "Engineered wood with laminate, brass hardware",
       dimensions: "W 120 × D 60 × H 75 cm",
@@ -173,7 +187,8 @@ async function main() {
       description: "Three smooth-glide drawers and an attached hutch keep books and files within reach. Cable ports keep work-from-home setups tidy.",
     },
     {
-      name: "Terra Accent Armchair", slug: "terra-accent-armchair", catSlug: "living-room", image: "/images/p-chair-1.png",
+      name: "Terra Accent Armchair", slug: "terra-accent-armchair", catSlug: "living-room",
+      images: ["/images/p-chair-1.png", "/images/g-7.png", "/images/cat-living.png"],
       price: 16900, featured: true,
       materials: "Solid walnut frame, boucle upholstery",
       dimensions: "W 72 × D 78 × H 82 cm",
@@ -181,7 +196,8 @@ async function main() {
       description: "A cosy reading chair with curved armrests and a soft boucle seat. Moves easily from living room to bedroom.",
     },
     {
-      name: "Ladder 5-Shelf Bookcase", slug: "ladder-5-shelf-bookcase", catSlug: "living-room", image: "/images/p-shelf-1.png",
+      name: "Ladder 5-Shelf Bookcase", slug: "ladder-5-shelf-bookcase", catSlug: "living-room",
+      images: ["/images/p-shelf-1.png", "/images/g-8.png", "/images/cat-living.png"],
       price: null,
       materials: "Solid wood framework",
       dimensions: "W 80 × D 34 × H 180 cm",
@@ -189,7 +205,8 @@ async function main() {
       description: "Five open shelves for books, plants and objects collected over time. Request a quote for the finish and size that suits your wall.",
     },
     {
-      name: "Bespoke Headboard & Bed Combo", slug: "bespoke-headboard-bed-combo", catSlug: "custom-furniture", image: "/images/g-8.png",
+      name: "Bespoke Headboard & Bed Combo", slug: "bespoke-headboard-bed-combo", catSlug: "custom-furniture",
+      images: ["/images/g-8.png", "/images/cat-custom.png", "/images/custom-banner.png"],
       price: null, badge: "Made to Order",
       materials: "Configurable — solid wood, upholstery, cane",
       dimensions: "Made to measure",
@@ -205,7 +222,7 @@ async function main() {
       where: { slug: p.slug },
       update: {
         name: p.name, categoryId: category?.id ?? null,
-        description: p.description, images: JSON.stringify([p.image]),
+        description: p.description, images: JSON.stringify(p.images),
         materials: p.materials, dimensions: p.dimensions, colors: p.colors,
         price: p.price, badge: p.badge ?? null, featured: p.featured ?? false,
         sortOrder: order,
