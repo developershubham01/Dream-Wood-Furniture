@@ -7,7 +7,6 @@ export const dynamic = "force-dynamic";
 
 const productPatchSchema = z.object({
   name: z.string().trim().min(2).max(120).optional(),
-  nameHi: z.string().trim().max(120).optional().nullable(),
   categoryId: z.string().optional().nullable(),
   description: z.string().trim().max(4000).optional().nullable(),
   images: z.array(z.string()).optional(),
@@ -34,7 +33,6 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id
 
   const data: Record<string, unknown> = {};
   if (d.name !== undefined) data.name = d.name;
-  if (d.nameHi !== undefined) data.nameHi = d.nameHi;
   if (d.categoryId !== undefined) data.categoryId = d.categoryId || null;
   if (d.description !== undefined) data.description = d.description;
   if (d.images !== undefined) data.images = JSON.stringify(d.images);

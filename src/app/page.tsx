@@ -55,7 +55,7 @@ export default async function Page() {
         "@type": "FurnitureStore",
         "@id": "#store",
         name: "Dream Wood Furniture",
-        alternateName: "ड्रीम वुड फर्निचर",
+
         description: settings.seo.description,
         telephone: "+91-" + settings.contact.phone.replace(/\D/g, "").replace(/^0/, ""),
         priceRange: "₹₹",
@@ -86,7 +86,7 @@ export default async function Page() {
       {
         "@type": "WebSite",
         name: "Dream Wood Furniture",
-        alternateName: "ड्रीम वुड फर्निचर",
+
         inLanguage: "en-IN",
         publisher: { "@id": "#store" },
       },

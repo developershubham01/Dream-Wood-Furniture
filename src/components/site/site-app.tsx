@@ -38,6 +38,15 @@ export function SiteApp({ initialData }: { initialData: SiteData }) {
     }
   }, []);
 
+  // Scroll to top on every view transition so header and page top are always visible
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" as ScrollBehavior });
+    const timer = setTimeout(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" as ScrollBehavior });
+    }, 0);
+    return () => clearTimeout(timer);
+  }, [view]);
+
   // Admin takes over the whole screen
   if (view.name === "admin") {
     return (

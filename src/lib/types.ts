@@ -3,7 +3,6 @@
 export interface Category {
   id: string;
   name: string;
-  nameHi: string | null;
   slug: string;
   description: string | null;
   image: string | null;
@@ -14,7 +13,6 @@ export interface Category {
 export interface Product {
   id: string;
   name: string;
-  nameHi: string | null;
   slug: string;
   categoryId: string | null;
   categoryName: string | null;

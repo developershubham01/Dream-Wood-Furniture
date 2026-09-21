@@ -87,7 +87,15 @@ export function Navbar() {
               <DropdownMenuContent
                 align="center"
                 className="w-56 bg-card border-walnut-100 rounded-xl shadow-xl shadow-walnut-900/10 p-1.5"
+                onCloseAutoFocus={(e) => e.preventDefault()}
               >
+                <DropdownMenuItem
+                  onClick={() => navigate({ name: "shop" })}
+                  className="flex items-center justify-between gap-3 px-3 py-2.5 rounded-lg cursor-pointer text-walnut-900 font-semibold focus:bg-walnut-50"
+                >
+                  <span className="text-sm">All Categories</span>
+                </DropdownMenuItem>
+                <div className="h-px bg-walnut-100 my-1" />
                 {data.categories.map((cat) => (
                   <DropdownMenuItem
                     key={cat.id}
@@ -95,7 +103,6 @@ export function Navbar() {
                     className="flex items-center justify-between gap-3 px-3 py-2.5 rounded-lg cursor-pointer text-walnut-800 focus:bg-walnut-50 focus:text-walnut-900"
                   >
                     <span className="text-sm font-medium">{cat.name}</span>
-                    <span className="text-xs text-muted-foreground">{cat.nameHi}</span>
                   </DropdownMenuItem>
                 ))}
                 <DropdownMenuItem

@@ -35,7 +35,6 @@ model AdminSession {
 model Category {
   id          String    @id @default(cuid())
   name        String
-  nameHi      String?
   slug        String    @unique
   description String?
   image       String?
@@ -49,7 +48,6 @@ model Category {
 model Product {
   id          String         @id @default(cuid())
   name        String
-  nameHi      String?
   slug        String         @unique
   categoryId  String?
   description String?

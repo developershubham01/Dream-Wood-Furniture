@@ -106,9 +106,7 @@ export function QuickView() {
                 {product.name}
               </DialogTitle>
               <div className="flex items-center gap-2.5 mt-1.5 flex-wrap">
-                {product.nameHi && (
-                  <DialogDescription className="text-sm">{product.nameHi}</DialogDescription>
-                )}
+
                 {product.categoryName && (
                   <span className="text-[11px] uppercase tracking-wider text-gold-dark font-semibold">
                     {product.categoryName}

@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     template: "%s | Dream Wood Furniture",
   },
   description:
-    "Dream Wood Furniture (ड्रीम वुड फर्निचर) — thoughtfully designed sofas, beds, wardrobes, dining sets and custom furniture. Visit our showroom at Balaji Tower, Seawoods West, Navi Mumbai. Rated 4.8/5 by 204 customers.",
+    "Dream Wood Furniture — thoughtfully designed sofas, beds, wardrobes, dining sets and custom furniture. Visit our showroom at Balaji Tower, Seawoods West, Navi Mumbai. Rated 4.8/5 by 204 customers.",
   keywords: [
     "Dream Wood Furniture",
     "furniture Seawoods",
@@ -36,7 +36,6 @@ export const metadata: Metadata = {
     "wardrobes",
     "dining sets",
     "furniture showroom",
-    "ड्रीम वुड फर्निचर",
   ],
   authors: [{ name: "Dream Wood Furniture" }],
   icons: {

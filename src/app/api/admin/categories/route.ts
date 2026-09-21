@@ -8,7 +8,6 @@ export const dynamic = "force-dynamic";
 
 const categorySchema = z.object({
   name: z.string().trim().min(2).max(60),
-  nameHi: z.string().trim().max(60).optional().nullable(),
   description: z.string().trim().max(500).optional().nullable(),
   image: z.string().trim().max(400).optional().nullable(),
   sortOrder: z.number().int().default(0),
@@ -45,7 +44,6 @@ export async function POST(req: NextRequest) {
   const category = await db.category.create({
     data: {
       name: d.name,
-      nameHi: d.nameHi ?? null,
       description: d.description ?? null,
       image: d.image ?? null,
       slug,

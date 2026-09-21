@@ -216,7 +216,7 @@ export function CompareDialog() {
                 <h3 className="font-display text-lg leading-snug text-walnut-900 line-clamp-2">
                   {p.name}
                 </h3>
-                {p.nameHi && <p className="text-xs text-muted-foreground mt-0.5">{p.nameHi}</p>}
+
                 <div className="mt-2 flex items-baseline gap-1.5 flex-wrap">
                   {p.price != null ? (
                     <>

@@ -26,7 +26,6 @@ import { toast } from "@/hooks/use-toast";
 interface AdminCategory {
   id: string;
   name: string;
-  nameHi: string | null;
   slug: string;
   description: string | null;
   image: string | null;
@@ -46,7 +45,6 @@ export function AdminCategories() {
 
   const [form, setForm] = useState({
     name: "",
-    nameHi: "",
     description: "",
     image: "",
     active: true,
@@ -68,7 +66,7 @@ export function AdminCategories() {
 
   const openCreate = () => {
     setEditing(null);
-    setForm({ name: "", nameHi: "", description: "", image: "", active: true, sortOrder: String(categories.length + 1) });
+    setForm({ name: "", description: "", image: "", active: true, sortOrder: String(categories.length + 1) });
     setDialogOpen(true);
   };
 
@@ -76,7 +74,6 @@ export function AdminCategories() {
     setEditing(c);
     setForm({
       name: c.name,
-      nameHi: c.nameHi ?? "",
       description: c.description ?? "",
       image: c.image ?? "",
       active: c.active,
@@ -94,7 +91,6 @@ export function AdminCategories() {
     try {
       const payload = {
         name: form.name.trim(),
-        nameHi: form.nameHi.trim() || null,
         description: form.description.trim() || null,
         image: form.image.trim() || null,
         active: form.active,
@@ -188,7 +184,6 @@ export function AdminCategories() {
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 flex-wrap">
                   <p className="font-medium text-walnut-900 text-sm">{c.name}</p>
-                  {c.nameHi && <span className="text-xs text-muted-foreground">{c.nameHi}</span>}
                   {!c.active && (
                     <span className="text-[10px] uppercase tracking-wide bg-walnut-100 text-walnut-700 px-2 py-0.5 rounded-full font-semibold">
                       Hidden
@@ -236,19 +231,11 @@ export function AdminCategories() {
 
           <div className="space-y-4 py-1">
             <div>
-              <Label className="text-sm font-medium text-walnut-900">Name *</Label>
+              <Label className="text-sm font-medium text-walnut-900">Category Name *</Label>
               <Input
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
                 placeholder='e.g. "Recliners"'
-                className="mt-1.5 h-10 rounded-xl border-walnut-200 focus-visible:ring-gold"
-              />
-            </div>
-            <div>
-              <Label className="text-sm font-medium text-walnut-900">Hindi Name (optional)</Label>
-              <Input
-                value={form.nameHi}
-                onChange={(e) => setForm({ ...form, nameHi: e.target.value })}
                 className="mt-1.5 h-10 rounded-xl border-walnut-200 focus-visible:ring-gold"
               />
             </div>

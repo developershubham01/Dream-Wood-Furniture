@@ -106,7 +106,6 @@ export function SearchDialog() {
         .filter(
           (p) =>
             p.name.toLowerCase().includes(q) ||
-            (p.nameHi ?? "").includes(q) ||
             (p.categoryName ?? "").toLowerCase().includes(q)
         )
         .slice(0, 8)
@@ -114,7 +113,7 @@ export function SearchDialog() {
 
   const categoryResults = q
     ? data.categories.filter(
-        (c) => c.name.toLowerCase().includes(q) || (c.nameHi ?? "").includes(q)
+        (c) => c.name.toLowerCase().includes(q)
       )
     : [];
 
@@ -161,7 +160,6 @@ export function SearchDialog() {
               >
                 <Search className="mr-2.5 h-4 w-4 text-gold-dark" aria-hidden />
                 <span className="font-medium">{c.name}</span>
-                {c.nameHi && <span className="ml-2 text-xs text-muted-foreground">{c.nameHi}</span>}
               </CommandItem>
             ))}
           </CommandGroup>

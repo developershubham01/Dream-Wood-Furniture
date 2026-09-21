@@ -34,7 +34,7 @@ export function Footer() {
               A premium furniture showroom in Seawoods, Navi Mumbai — thoughtfully designed
               furniture, customisation options and honest, personalised service for your home.
             </p>
-            <p className="mt-3 text-sm text-gold/90">ड्रीम वुड फर्निचर · Seawoods West</p>
+            <p className="mt-3 text-sm text-gold/90">Premium Solid Wood Furniture · Seawoods West</p>
             <div className="mt-6 flex items-center gap-2.5">
               {social.instagram && (
                 <SocialIcon href={social.instagram} label="Instagram">
@@ -139,7 +139,7 @@ export function Footer() {
           className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent"
         />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-ivory/50">
-          <p>© {new Date().getFullYear()} Dream Wood Furniture · ड्रीम वुड फर्निचर · All rights reserved</p>
+          <p>© {new Date().getFullYear()} Dream Wood Furniture · All rights reserved</p>
           <div className="flex items-center gap-4">
             <LegalDialog type="privacy" />
             <span className="h-1 w-1 rounded-full bg-ivory/30" aria-hidden />

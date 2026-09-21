@@ -8,5 +8,5 @@ Disallow: /api/
 # XML sitemap (hash views are client-side; a single canonical URL is listed)
 Sitemap: http://localhost:3000/sitemap.xml
 
-# Business: Dream Wood Furniture (ड्रीम वुड फर्निचर)
+# Business: Dream Wood Furniture
 # Balaji Tower, Seawoods West, Navi Mumbai 400706

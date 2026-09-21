@@ -41,7 +41,7 @@ export function ShowroomSection() {
                       Dream Wood Furniture
                     </p>
                     <p className="font-display text-2xl sm:text-3xl mt-2 text-ivory leading-snug">
-                      ड्रीम वुड फर्निचर
+                      Seawoods Showroom
                     </p>
                   </div>
                   <div className="flex flex-col items-center bg-white/10 border border-white/15 rounded-2xl px-4 py-3 backdrop-blur-sm shrink-0">

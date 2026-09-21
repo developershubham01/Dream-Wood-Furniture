@@ -256,7 +256,6 @@ export function ProductView({ slug }: { slug: string }) {
             <h1 className="mt-3 font-display text-3xl sm:text-4xl leading-tight text-walnut-900 text-balance">
               {product.name}
             </h1>
-            {product.nameHi && <p className="mt-1.5 text-lg text-muted-foreground">{product.nameHi}</p>}
 
             <div className="mt-6 flex items-baseline gap-3">
               {product.price != null ? (

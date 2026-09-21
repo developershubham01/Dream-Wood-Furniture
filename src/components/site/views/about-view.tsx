@@ -47,7 +47,7 @@ export function AboutView() {
             Furniture, the way it should feel
           </h1>
           <p className="mt-4 text-ivory/75 max-w-xl leading-relaxed">
-            Dream Wood Furniture · ड्रीम वुड फर्निचर — a furniture store in Seawoods West, Navi Mumbai.
+            Dream Wood Furniture — premium furniture store in Seawoods West, Navi Mumbai.
           </p>
         </div>
       </div>

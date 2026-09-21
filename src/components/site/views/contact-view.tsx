@@ -97,7 +97,6 @@ export function ContactView() {
                     Showroom
                   </p>
                   <p className="font-display text-xl text-walnut-900 mt-1.5">Dream Wood Furniture</p>
-                  <p className="text-sm text-muted-foreground">ड्रीम वुड फर्निचर</p>
                 </div>
 
                 <div className="space-y-4 text-sm">

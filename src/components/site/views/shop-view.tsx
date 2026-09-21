@@ -89,7 +89,6 @@ export function ShopView({ initialCategory, initialQuery }: { initialCategory?: 
       list = list.filter(
         (p) =>
           p.name.toLowerCase().includes(q) ||
-          (p.nameHi ?? "").includes(q) ||
           (p.categoryName ?? "").toLowerCase().includes(q) ||
           (p.description ?? "").toLowerCase().includes(q)
       );
@@ -135,9 +134,6 @@ export function ShopView({ initialCategory, initialQuery }: { initialCategory?: 
             {activeCategory?.description ??
               "Browse thoughtfully designed furniture for every room — request a quote or visit the showroom to experience the pieces in person."}
           </p>
-          {activeCategory?.nameHi && (
-            <p className="mt-1 text-gold/80 text-sm">{activeCategory.nameHi}</p>
-          )}
         </div>
       </div>
 
@@ -197,14 +193,23 @@ export function ShopView({ initialCategory, initialQuery }: { initialCategory?: 
 
           {/* Category pills */}
           <div className={cn("flex gap-2 overflow-x-auto pb-1 scrollbar-none", !showFilters && "hidden xl:flex")}>
-            <CategoryPill active={category === "all"} onClick={() => setCategory("all")}>
+            <CategoryPill
+              active={category === "all"}
+              onClick={() => {
+                setCategory("all");
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }}
+            >
               All Products
             </CategoryPill>
             {data.categories.map((cat) => (
               <CategoryPill
                 key={cat.id}
                 active={category === cat.slug}
-                onClick={() => setCategory(cat.slug)}
+                onClick={() => {
+                  setCategory(cat.slug);
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
               >
                 {cat.name}
               </CategoryPill>
@@ -421,7 +426,6 @@ function ProductListItem({ product, index }: { product: Product; index: number }
           {product.name}
         </h3>
         <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1">
-          {product.nameHi && <span className="text-sm text-muted-foreground">{product.nameHi}</span>}
           {product.categoryName && (
             <span className="text-[11px] uppercase tracking-wider text-gold-dark">
               {product.categoryName}

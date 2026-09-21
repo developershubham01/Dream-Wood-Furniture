@@ -49,9 +49,7 @@ export function CategorySection() {
 
               <div className="absolute inset-x-0 bottom-0 p-4 sm:p-5">
                 <p className="font-display text-lg sm:text-xl text-ivory leading-tight">{cat.name}</p>
-                {cat.nameHi && (
-                  <p className="text-xs text-ivory/70 mt-0.5 tracking-wide">{cat.nameHi}</p>
-                )}
+
                 <span className="mt-3 inline-flex items-center gap-1.5 text-xs font-medium text-gold-light tracking-wide uppercase opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
                   Explore
                   <ArrowUpRight className="h-3.5 w-3.5" />

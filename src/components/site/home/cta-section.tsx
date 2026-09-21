@@ -43,7 +43,7 @@ export function CtaSection() {
           transition={{ duration: 0.6 }}
           className="text-xs font-semibold tracking-[0.3em] uppercase text-gold"
         >
-          Dream Wood Furniture · ड्रीम वुड फर्निचर
+          Dream Wood Furniture · Seawoods, Navi Mumbai
         </motion.p>
         <motion.h2
           initial={{ opacity: 0, y: 24 }}

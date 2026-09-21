@@ -117,7 +117,10 @@ export const useSiteStore = create<SiteStore>()(
           if (window.location.hash !== newHash) {
             window.history.pushState(null, "", newHash);
           }
-          window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
+          window.scrollTo({ top: 0, left: 0, behavior: "instant" as ScrollBehavior });
+          setTimeout(() => {
+            window.scrollTo({ top: 0, left: 0, behavior: "instant" as ScrollBehavior });
+          }, 0);
         }
         set({ view });
       },

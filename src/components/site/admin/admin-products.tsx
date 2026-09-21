@@ -57,7 +57,6 @@ import type { Category } from "@/lib/types";
 interface AdminProduct {
   id: string;
   name: string;
-  nameHi: string | null;
   slug: string;
   categoryId: string | null;
   description: string | null;
@@ -77,7 +76,6 @@ interface AdminProduct {
 
 interface ProductForm {
   name: string;
-  nameHi: string;
   categoryId: string;
   description: string;
   images: string[];
@@ -118,7 +116,6 @@ const BULK_DONE_NOTE: Record<Exclude<BulkAction, "delete">, string> = {
 
 const emptyForm: ProductForm = {
   name: "",
-  nameHi: "",
   categoryId: "",
   description: "",
   images: [],
@@ -282,7 +279,6 @@ export function AdminProducts() {
     setEditing(p);
     setForm({
       name: p.name,
-      nameHi: p.nameHi ?? "",
       categoryId: p.categoryId ?? "",
       description: p.description ?? "",
       images: parseImages(p.images),
@@ -314,7 +310,6 @@ export function AdminProducts() {
 
       const payload = {
         name: form.name.trim(),
-        nameHi: form.nameHi.trim() || null,
         categoryId: form.categoryId || null,
         description: form.description.trim() || null,
         images: form.images,
@@ -399,7 +394,6 @@ export function AdminProducts() {
     try {
       const payload = {
         name: `${p.name} (Copy)`.slice(0, 120),
-        nameHi: p.nameHi,
         categoryId: p.categoryId,
         description: p.description,
         images: parseImages(p.images),
@@ -797,21 +791,12 @@ export function AdminProducts() {
           </DialogHeader>
 
           <div className="grid sm:grid-cols-2 gap-4 py-2">
-            <div className="sm:col-span-2">
+            <div className="sm:col-span-3">
               <Label className="text-sm font-medium text-walnut-900">Product Name *</Label>
               <Input
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
                 placeholder='e.g. "Aarav 3-Seater Sofa"'
-                className="mt-1.5 h-10 rounded-xl border-walnut-200 focus-visible:ring-gold"
-              />
-            </div>
-            <div>
-              <Label className="text-sm font-medium text-walnut-900">Hindi Name (optional)</Label>
-              <Input
-                value={form.nameHi}
-                onChange={(e) => setForm({ ...form, nameHi: e.target.value })}
-                placeholder="हिंदी नाम"
                 className="mt-1.5 h-10 rounded-xl border-walnut-200 focus-visible:ring-gold"
               />
             </div>

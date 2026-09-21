@@ -126,9 +126,6 @@ export function ProductCard({
         >
           {product.name}
         </h3>
-        {product.nameHi && (
-          <p className="text-sm text-muted-foreground mt-0.5">{product.nameHi}</p>
-        )}
 
         <div className="mt-3 flex items-baseline gap-2">
           {product.price != null ? (

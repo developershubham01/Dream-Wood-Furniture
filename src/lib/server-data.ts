@@ -5,7 +5,7 @@ import type { Category, Faq, GalleryImage, Product, SiteData, Testimonial } from
 
 export function serializeProduct(
   p: {
-    id: string; name: string; nameHi: string | null; slug: string; categoryId: string | null;
+    id: string; name: string; slug: string; categoryId: string | null;
     description: string | null; images: string; materials: string | null; dimensions: string | null;
     colors: string | null; price: number | null; badge: string | null; featured: boolean;
     active: boolean; sortOrder: number; createdAt: Date;
@@ -15,7 +15,6 @@ export function serializeProduct(
   return {
     id: p.id,
     name: p.name,
-    nameHi: p.nameHi,
     slug: p.slug,
     categoryId: p.categoryId,
     categoryName: p.category?.name ?? null,
@@ -35,11 +34,11 @@ export function serializeProduct(
 }
 
 export function serializeCategory(c: {
-  id: string; name: string; nameHi: string | null; slug: string;
+  id: string; name: string; slug: string;
   description: string | null; image: string | null; sortOrder: number; active: boolean;
 }): Category {
   return {
-    id: c.id, name: c.name, nameHi: c.nameHi, slug: c.slug,
+    id: c.id, name: c.name, slug: c.slug,
     description: c.description, image: c.image, sortOrder: c.sortOrder, active: c.active,
   };
 }

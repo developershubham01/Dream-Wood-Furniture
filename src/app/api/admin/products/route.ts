@@ -8,7 +8,6 @@ export const dynamic = "force-dynamic";
 
 const productSchema = z.object({
   name: z.string().trim().min(2).max(120),
-  nameHi: z.string().trim().max(120).optional().nullable(),
   categoryId: z.string().optional().nullable(),
   description: z.string().trim().max(4000).optional().nullable(),
   images: z.array(z.string()).default([]),
@@ -58,7 +57,6 @@ export async function POST(req: NextRequest) {
   const product = await db.product.create({
     data: {
       name: d.name,
-      nameHi: d.nameHi ?? null,
       slug,
       categoryId: d.categoryId || null,
       description: d.description ?? null,
