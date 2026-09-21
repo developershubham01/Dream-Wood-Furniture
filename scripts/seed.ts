@@ -229,7 +229,7 @@ async function main() {
       },
       create: {
         name: p.name, slug: p.slug, categoryId: category?.id ?? null,
-        description: p.description, images: JSON.stringify([p.image]),
+        description: p.description, images: JSON.stringify(p.images),
         materials: p.materials, dimensions: p.dimensions, colors: p.colors,
         price: p.price, badge: p.badge ?? null, featured: p.featured ?? false,
         active: true, sortOrder: order,

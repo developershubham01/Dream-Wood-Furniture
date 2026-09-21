@@ -52,25 +52,54 @@ interface SiteStore {
   setSearchOpen: (open: boolean) => void;
 }
 
-function viewToHash(view: View): string {
+export function viewToPath(view: View): string {
   switch (view.name) {
     case "home":
-      return "#home";
+      return "/";
     case "shop":
-      return view.category ? `#shop/${view.category}` : "#shop";
+      return view.category ? `/shop/${encodeURIComponent(view.category)}` : "/shop";
     case "product":
-      return `#product/${view.slug}`;
+      return `/product/${encodeURIComponent(view.slug)}`;
+    case "custom":
+      return "/custom";
+    case "about":
+      return "/about";
+    case "contact":
+      return "/contact";
     case "wishlist":
-      return "#wishlist";
+      return "/wishlist";
+    case "admin":
+      return "/admin";
     default:
-      return `#${view.name}`;
+      return "/";
   }
 }
 
-// Exported so the app shell can sync the view from the URL hash after mount
-// (hydration-safe: SSR and the first client render always agree on "home").
-export function hashToView(hash: string): View {
-  const clean = hash.replace(/^#\/?/, "");
+export function pathToView(pathname: string, hash?: string): View {
+  if (hash && hash.startsWith("#")) {
+    const cleanHash = hash.replace(/^#\/?/, "");
+    if (cleanHash && cleanHash !== "home") {
+      const [hHead, ...hRest] = cleanHash.split("/");
+      switch (hHead) {
+        case "shop":
+          return hRest[0] ? { name: "shop", category: decodeURIComponent(hRest[0]) } : { name: "shop" };
+        case "product":
+          return hRest[0] ? { name: "product", slug: decodeURIComponent(hRest[0]) } : { name: "home" };
+        case "custom":
+          return { name: "custom" };
+        case "about":
+          return { name: "about" };
+        case "contact":
+          return { name: "contact" };
+        case "wishlist":
+          return { name: "wishlist" };
+        case "admin":
+          return { name: "admin" };
+      }
+    }
+  }
+
+  const clean = pathname.replace(/^\/+/, "").replace(/\/+$/, "");
   if (!clean || clean === "home") return { name: "home" };
   const [head, ...rest] = clean.split("/");
   switch (head) {
@@ -93,8 +122,8 @@ export function hashToView(hash: string): View {
   }
 }
 
-// Always start on a deterministic view so SSR and the first client render match.
-// The real hash view (e.g. #admin, #shop) is applied by SiteApp in a mount effect.
+export const hashToView = pathToView;
+
 const initialView: View = { name: "home" };
 
 export const useSiteStore = create<SiteStore>()(
@@ -113,9 +142,9 @@ export const useSiteStore = create<SiteStore>()(
       },
       navigate: (view) => {
         if (typeof window !== "undefined") {
-          const newHash = viewToHash(view);
-          if (window.location.hash !== newHash) {
-            window.history.pushState(null, "", newHash);
+          const newPath = viewToPath(view);
+          if (window.location.pathname !== newPath || window.location.hash !== "") {
+            window.history.pushState(null, "", newPath);
           }
           window.scrollTo({ top: 0, left: 0, behavior: "instant" as ScrollBehavior });
           setTimeout(() => {
@@ -127,7 +156,7 @@ export const useSiteStore = create<SiteStore>()(
       goHome: (section) => {
         set({ view: { name: "home" } });
         if (typeof window !== "undefined") {
-          window.history.pushState(null, "", "#home");
+          window.history.pushState(null, "", "/");
           requestAnimationFrame(() => {
             if (section) {
               const el = document.getElementById(section);
@@ -216,14 +245,16 @@ export const useSiteStore = create<SiteStore>()(
   )
 );
 
-// Listen for hash changes (browser back/forward)
+// Listen for browser navigation (back/forward buttons)
 if (typeof window !== "undefined") {
-  window.addEventListener("hashchange", () => {
-    const view = hashToView(window.location.hash);
+  const syncView = () => {
+    const view = pathToView(window.location.pathname, window.location.hash);
     const current = useSiteStore.getState().view;
     if (JSON.stringify(current) !== JSON.stringify(view)) {
       useSiteStore.setState({ view });
-      window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" as ScrollBehavior });
     }
-  });
+  };
+  window.addEventListener("popstate", syncView);
+  window.addEventListener("hashchange", syncView);
 }

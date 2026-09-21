@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { SiteDataProvider } from "@/lib/site-data";
-import { useSiteStore, hashToView } from "@/lib/store";
+import { useSiteStore, pathToView, viewToPath } from "@/lib/store";
 import { AnnouncementBar } from "./announcement-bar";
 import { Navbar } from "./navbar";
 import { Footer } from "./footer";
@@ -27,14 +27,17 @@ import type { SiteData } from "@/lib/types";
 export function SiteApp({ initialData }: { initialData: SiteData }) {
   const view = useSiteStore((s) => s.view);
 
-  // Hydration-safe hash routing: SSR always renders "home". After mount,
-  // switch to whatever view the URL hash actually points at (e.g. #admin).
+  // Hydration-safe clean path routing: SSR renders deterministic "home".
+  // On mount, sync view from URL path and migrate any legacy hash tags to clean paths.
   useEffect(() => {
-    const fromHash = hashToView(window.location.hash);
+    const fromPath = pathToView(window.location.pathname, window.location.hash);
     const current = useSiteStore.getState().view;
-    if (JSON.stringify(current) !== JSON.stringify(fromHash)) {
-      useSiteStore.setState({ view: fromHash });
-      window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
+    if (window.location.hash) {
+      window.history.replaceState(null, "", viewToPath(fromPath));
+    }
+    if (JSON.stringify(current) !== JSON.stringify(fromPath)) {
+      useSiteStore.setState({ view: fromPath });
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" as ScrollBehavior });
     }
   }, []);
 

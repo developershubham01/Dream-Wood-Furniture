@@ -21,7 +21,6 @@ export default async function Page() {
 
   const { settings } = initialData;
 
-  // ── Structured data (SEO): store + website + product catalogue in one @graph ──
   const socialLinks = [settings.social.instagram, settings.social.facebook, settings.social.justdial]
     .map((u) => u.trim())
     .filter((u) => /^https?:\/\//.test(u));
@@ -33,7 +32,6 @@ export default async function Page() {
     image: p.images[0] ? [p.images[0]] : undefined,
     category: p.categoryName,
     brand: { "@type": "Brand", name: "Dream Wood Furniture" },
-    // Only priced pieces get offers — custom-quote pieces stay quote-only
     ...(p.price != null
       ? {
           offers: {
@@ -55,7 +53,6 @@ export default async function Page() {
         "@type": "FurnitureStore",
         "@id": "#store",
         name: "Dream Wood Furniture",
-
         description: settings.seo.description,
         telephone: "+91-" + settings.contact.phone.replace(/\D/g, "").replace(/^0/, ""),
         priceRange: "₹₹",
@@ -86,7 +83,6 @@ export default async function Page() {
       {
         "@type": "WebSite",
         name: "Dream Wood Furniture",
-
         inLanguage: "en-IN",
         publisher: { "@id": "#store" },
       },
@@ -104,7 +100,6 @@ export default async function Page() {
             },
           ]
         : []),
-      // FAQPage — only visible FAQs (matches the storefront accordion)
       ...(initialData.faqs.length > 0
         ? [
             {

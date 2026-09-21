@@ -137,14 +137,12 @@
     @apply border-border outline-ring/50;
   }
   html {
-    scroll-behavior: smooth;
-    /* hidden first: lightning-css may drop `clip` for older targets — keep a fallback */
-    overflow-x: hidden;
+    max-width: 100%;
     overflow-x: clip;
   }
   body {
     @apply bg-background text-foreground;
-    overflow-x: hidden;
+    max-width: 100%;
     overflow-x: clip;
     font-feature-settings: "ss01" on;
   }
@@ -152,6 +150,16 @@
     background: #b08d57;
     color: #fffdf9;
   }
+}
+
+/* Ensure sticky header remains fixed & visible even when modals/sheets lock body scroll */
+body[data-scroll-locked] header {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 50;
 }
 
 /* ── Refined scrollbar ── */
