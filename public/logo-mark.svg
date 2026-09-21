@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" rx="0" fill="none"/>
+  <!-- tree growth rings -->
+  <circle cx="32" cy="32" r="27" fill="none" stroke="#5C4433" stroke-width="2.6"/>
+  <circle cx="29.5" cy="34" r="20" fill="none" stroke="#B08D57" stroke-width="1.4" opacity="0.75"/>
+  <circle cx="34.5" cy="29.5" r="13" fill="none" stroke="#B08D57" stroke-width="1" opacity="0.45"/>
+  <!-- DW monogram -->
+  <text x="32" y="40" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="21" fill="#5C4433" letter-spacing="0.5">DW</text>
+</svg>

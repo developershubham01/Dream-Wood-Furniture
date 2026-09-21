@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 72" width="340" height="72">
+  <!-- mark -->
+  <circle cx="36" cy="36" r="27" fill="none" stroke="#5C4433" stroke-width="2.6"/>
+  <circle cx="33.5" cy="38" r="20" fill="none" stroke="#B08D57" stroke-width="1.4" opacity="0.75"/>
+  <circle cx="38.5" cy="33.5" r="13" fill="none" stroke="#B08D57" stroke-width="1" opacity="0.45"/>
+  <text x="36" y="44" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="21" fill="#5C4433" letter-spacing="0.5">DW</text>
+  <!-- wordmark -->
+  <text x="80" y="36" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="26" fill="#3d2b20" letter-spacing="1.2">DREAM WOOD</text>
+  <text x="82" y="56" font-family="Georgia, 'Times New Roman', serif" font-size="10.5" fill="#B08D57" letter-spacing="6.2">FURNITURE</text>
+</svg>

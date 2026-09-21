@@ -1,0 +1,153 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ─── Admin & Auth ─────────────────────────────────────────────
+
+model AdminUser {
+  id           String        @id @default(cuid())
+  username     String        @unique
+  passwordHash String
+  displayName  String        @default("Administrator")
+  role         String        @default("admin") // admin | editor
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  sessions     AdminSession[]
+}
+
+model AdminSession {
+  id        String   @id @default(cuid()) // token stored in httpOnly cookie
+  adminId   String
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  admin     AdminUser @relation(fields: [adminId], references: [id], onDelete: Cascade)
+
+  @@index([adminId])
+}
+
+// ─── Catalogue ────────────────────────────────────────────────
+
+model Category {
+  id          String    @id @default(cuid())
+  name        String
+  nameHi      String?
+  slug        String    @unique
+  description String?
+  image       String?
+  sortOrder   Int       @default(0)
+  active      Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  products    Product[]
+}
+
+model Product {
+  id          String         @id @default(cuid())
+  name        String
+  nameHi      String?
+  slug        String         @unique
+  categoryId  String?
+  description String?
+  // comma-separated extra images (JSON string array)
+  images      String         @default("[]")
+  materials   String? // e.g. "Sheesham Wood, Premium Fabric"
+  dimensions  String? // e.g. "L 210 x W 90 x H 85 cm"
+  colors      String? // e.g. "Walnut, Beige, Charcoal"
+  price       Int? // INR, null => "Request a Quote"
+  badge       String? // e.g. "Bestseller" | "New" | "Customisable"
+  featured    Boolean        @default(false)
+  active      Boolean        @default(true)
+  sortOrder   Int            @default(0)
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+  category    Category?      @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+
+  @@index([categoryId])
+  @@index([featured])
+}
+
+// ─── Enquiries ────────────────────────────────────────────────
+
+model Enquiry {
+  id            String        @id @default(cuid())
+  // contact details
+  name          String
+  phone         String
+  email         String?
+  // enquiry details
+  furnitureType String?
+  material      String?
+  size          String?
+  budget        String?
+  description   String?
+  referenceNote String?
+  contactMethod String        @default("phone") // phone | whatsapp | email
+  source        String        @default("custom-form") // custom-form | product-quote | general
+  status        String        @default("new") // new | contacted | quoted | won | archived
+  internalNotes String?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  items         EnquiryItem[]
+}
+
+model EnquiryItem {
+  id        String   @id @default(cuid())
+  enquiryId String
+  productId String?
+  productName String?
+  quantity  Int      @default(1)
+  enquiry   Enquiry  @relation(fields: [enquiryId], references: [id], onDelete: Cascade)
+
+  @@index([enquiryId])
+}
+
+// ─── Social proof & gallery ───────────────────────────────────
+
+model Testimonial {
+  id        String   @id @default(cuid())
+  name      String
+  location  String?
+  rating    Int      @default(5)
+  text      String
+  date      String?
+  active    Boolean  @default(true)
+  sortOrder Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model GalleryImage {
+  id        String   @id @default(cuid())
+  title     String
+  url       String
+  category  String   @default("Showroom") // Living Room | Bedroom | Dining | Showroom ...
+  sortOrder Int      @default(0)
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+}
+
+// ─── Customer-facing FAQs (storefront accordion + FAQPage schema) ──
+
+model Faq {
+  id        String   @id @default(cuid())
+  question  String
+  answer    String
+  topic     String   @default("General") // Orders | Delivery | Custom | Materials | Care | General
+  sortOrder Int      @default(0)
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ─── Editable site content (key/value JSON store) ─────────────
+
+model SiteSetting {
+  key       String   @id
+  value     String // JSON-encoded value
+  updatedAt DateTime @updatedAt
+}
