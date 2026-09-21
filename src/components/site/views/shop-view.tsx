@@ -138,9 +138,14 @@ export function ShopView({ initialCategory, initialQuery }: { initialCategory?: 
       </div>
 
       {/* Toolbar */}
-      <div className="sticky top-16 lg:top-20 z-40 bg-cream/95 backdrop-blur-md border-b border-walnut-100">
+      <div className="sticky top-16 lg:top-20 z-40 bg-cream border-b border-walnut-200 shadow-sm">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 py-3 space-y-3">
-          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+          <div className="flex flex-wrap items-center justify-between gap-2 sm:gap-3">
+            <div className="flex items-center gap-2">
+              <h2 className="font-display text-lg sm:text-xl font-bold text-walnut-900 tracking-tight">
+                {activeCategory ? activeCategory.name : "All Products"}
+              </h2>
+            </div>
             <div className="relative w-full sm:flex-1 sm:max-w-md">
               <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" aria-hidden />
               <Input

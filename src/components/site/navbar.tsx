@@ -47,10 +47,10 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 transition-all duration-500 border-b print:hidden",
+        "sticky top-0 z-50 transition-all duration-300 border-b print:hidden",
         scrolled
-          ? "bg-cream/95 backdrop-blur-md border-walnut-100 shadow-sm shadow-walnut-900/5"
-          : "bg-cream/80 backdrop-blur-sm border-transparent"
+          ? "bg-cream border-walnut-200 shadow-md"
+          : "bg-cream/90 backdrop-blur-md border-transparent"
       )}
     >
       <nav className="mx-auto max-w-7xl px-4 sm:px-6" aria-label="Main navigation">
@@ -73,6 +73,7 @@ export function Navbar() {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <button
+                  onClick={() => navigate({ name: "shop" })}
                   className={cn(
                     "px-4 py-2 text-sm font-medium tracking-wide rounded-full transition-colors flex items-center gap-1 cursor-pointer",
                     isActive("shop")
