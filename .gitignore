@@ -53,13 +53,5 @@ server.log
 # Skills directory
 /skills/
 
-# z.ai & temporary system files
-.zscripts/
-tool-results/
-upload/
-download/
+
 worklog.md
-tests/
-examples/
-mini-services/
-Caddyfile
